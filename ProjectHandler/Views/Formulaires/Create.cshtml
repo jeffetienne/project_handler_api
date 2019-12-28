@@ -1,0 +1,78 @@
+﻿@model ProjectHandler.ViewModels.FormulaireViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <div class="form-group">
+        @Html.LabelFor(f => f.Formulaire.Name)
+        @Html.TextBoxFor(f => f.Formulaire.Name, new { @class = "form-control", @id = "txtName" })
+        @Html.ValidationMessageFor(f => f.Formulaire.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(f => f.Formulaire.Description)
+        @Html.TextBoxFor(f => f.Formulaire.Description, new { @class = "form-control", @id = "txtDescription" })
+        @Html.ValidationMessageFor(f => f.Formulaire.Description)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(f => f.Formulaire.TypeForm.Id)
+        @Html.DropDownListFor(f => f.Formulaire.TypeForm.Id, new SelectList(Model.TypeForms, "Id", "Name"), "Select Type Form", new { @class = "form-control", @id = "txtTypeForm" })
+        @Html.ValidationMessageFor(f => f.Formulaire.TypeForm.Id)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(f => f.Formulaire.Projet.Id)
+        @Html.DropDownListFor(f => f.Formulaire.Projet.Id, new SelectList(Model.Projets, "Id", "Name"), "Select Projet", new { @class = "form-control", @id = "txtProjet" })
+        @Html.ValidationMessageFor(f => f.Formulaire.Projet.Id)
+    </div>
+
+
+    @Html.HiddenFor(f => f.Formulaire.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" id="btnSave" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    <script>
+
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            alert("Hello");
+            var dt = new Date();
+            var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();//get current datetime
+            $.ajax(
+            {
+                type: "POST", //HTTP POST Method
+                url: "/api/formulaire", // Controller/View
+                data: JSON.stringify({ //Passing data
+                    Name: $("#txtName").val(), //Reading text box values using Jquery
+                    Description: $("#txtDescription").val(),
+                    TypeFormId: $("#txtTypeForm").val(),
+                    ProjetId: $("#txtProjet").val(),
+                    CreePar: "concepteur",
+                    CreeLe: time
+                }),
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    alert("Succes");
+                    var url = "/Formulaires/List";//redirection to List after save
+                    window.location.href = url;
+                },
+                error: function () {
+                    alert("error");
+                }
+
+            });
+        });
+    });
+
+    </script>
+}
+

@@ -1,0 +1,100 @@
+﻿@model ProjectHandler.ViewModels.ProjetViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+@*<br /><br />
+<fieldset>
+    <div class="form-horizontal">
+        <div class="form-group">
+            Name
+        </div>
+        <div class="form-group">
+            <input type="text" id="txtName" />
+        </div>
+
+        <div class="form-group">
+            Description
+        </div>
+        <div class="form-group">
+            <input type="text" id="txtDescription" />
+        </div>
+
+        <div class="form-group">
+            Domaine
+        </div>
+        <div class="form-group">
+            <input type="text" id="txtDomaine" />
+        </div>
+        <div class="form-group">
+            <br />
+            <input class="btn button-group" type="button" id="btnSave" value="Save" />
+        </div>
+    </div>
+</fieldset>*@
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <div class="form-group">
+        @Html.LabelFor(p => p.Projet.Name)
+        @Html.TextBoxFor(p => p.Projet.Name, new { @class = "form-control", @id = "txtName" })
+        @Html.ValidationMessageFor(p => p.Projet.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(p => p.Projet.Description)
+        @Html.TextBoxFor(p => p.Projet.Description, new { @class = "form-control", @id = "txtDescription" })
+        @Html.ValidationMessageFor(p => p.Projet.Description)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(p => p.Projet.Domaine.Id)
+        @Html.DropDownListFor(p => p.Projet.Domaine.Id, new SelectList(Model.Domaines, "Id", "Name"), "Select Domaine", new { @class = "form-control", @id = "txtDomaine" })
+        @Html.ValidationMessageFor(p => p.Projet.Domaine.Id)
+    </div>
+
+ 
+    @Html.HiddenFor(p => p.Projet.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" id="btnSave" class="btn btn-primary">Save</button>
+}
+@section scripts
+{
+    <script>
+
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            var domaine = $("#txtDomaine").val();
+            var dt = new Date();
+            var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();//get current datetime
+            $.ajax(
+            {
+                type: "POST", //HTTP POST Method
+                url: "/api/projet", // Controller/View
+                data: JSON.stringify({ //Passing data
+                    Name: $("#txtName").val(), //Reading text box values using Jquery
+                    Description: $("#txtDescription").val(),
+                    DomaineId: $("#txtDomaine").val(),
+                    CreePar: "concepteur",
+                    CreeLe: time
+                }),
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    alert("Succes");
+                    var url = "/Projets/List";//redirection to List after save
+                    window.location.href = url;
+                },
+                error: function () {
+                    alert("error");
+                }
+                
+            });
+        });
+    });
+
+    </script>
+}
+

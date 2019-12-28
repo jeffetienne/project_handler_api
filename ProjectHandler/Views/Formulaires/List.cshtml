@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Liste des formulaires</h2>
+<div class="form-group">
+    <input class="btn button-group" type="button" id="btnCreate" value="New Formulaire" />
+</div>
+<table class="table table-bordered table-hover" id="formulaire">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Type Formulaire</th>
+            <th>Projet</th>
+            <th>Créé par</th>
+            <th>Créé le</th>
+            <th>Ouvrir</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnCreate").click(function () {
+                var url = "/Formulaires/Create";//redirection to List after save
+                window.location.href = url;
+            });
+
+            var table = $("#formulaire").DataTable({
+                ajax: {
+                    url: "/api/formulaire",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "Name",
+                        render: function (data, type, formulaire) {
+                            return "<a href='/formulaires/edit/" + formulaire.Id + "'>" + formulaire.Name + "</a>";
+                        }
+                    },
+                    {
+                        data: "Description"
+                    },
+                    {
+                        data: "TypeForm.Name"
+                    },
+                    {
+                        data: "Projet.Name"
+                    },
+                    {
+                        data: "CreePar"
+                    },
+                    {
+                        data: "CreeLe"
+                    },
+                    {
+                        data: "Name",
+                        render: function (data, type, formulaire) {
+                            return "<a href='/questions/create/" + formulaire.Id + "'>Ouvrir</a>";
+                        }
+                    },
+                    {
+                        data: "Id",
+                        render: function (data) {
+                            return "<button class='btn-link js-delete' data-formulaire-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            $('#formulaire').on('click', '.js-delete', function () {
+                var button = $(this);
+                bootbox.confirm("Are you sure you want to delete this formulaire?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/formulaire/" + button.attr("data-formulaire-id"),
+                            method: "DELETE",
+                            success: function () {
+                                //button.parents("tr").remove();
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}
+

@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var idQuestion = Request.Url.Segments[3];
+}
+
+@using (Html.BeginForm())
+{
+        @Html.Hidden("idQuestion", idQuestion, new { @class = "form-control", @id = "txtQuestionId" })
+        @Html.AntiForgeryToken()
+}
+<h2>Liste des references</h2>
+<table class="table table-bordered table-hover" id="reference">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Texte</th>
+            <th>Formulaire</th>
+            <th>Question</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $("#reference").DataTable({
+                ajax: {
+                    url: "/api/dynamicreferencebyquestion/" + $("#txtQuestionId").val(),
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "Code",
+                    },
+                    {
+                        data: "Texte"
+                    },
+                    {
+                        data: "Question.Formulaire.Name"
+                    },
+                    {
+                        data: "Question.Name"
+                    }
+                ]
+            });
+        });
+    </script>
+}
+

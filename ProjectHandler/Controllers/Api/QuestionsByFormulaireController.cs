@@ -29,7 +29,7 @@ namespace ProjectHandler.Controllers.Api
                 .Database
                 .SqlQuery<QuestionsByFormulaire>("GetQuestionsByFormulaire @formulaireId", new SqlParameter("@formulaireId", id))
                 .ToList();
-            for(int i = 0; i<questions.Count; i++)
+            for(int i = 0; i < questions.Count; i++)
             {
                 var idType = questions.ElementAt(i).TypeDonneeId;
                 var idComponent = questions.ElementAt(i).TypeDonneeId;

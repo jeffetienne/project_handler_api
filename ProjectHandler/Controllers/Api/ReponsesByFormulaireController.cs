@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ProjectHandler.Models;
+using ProjectHandler.Models.Complex;
 using ProjectHandler.Models.DTOs;
 using System;
 using System.Collections.Generic;
@@ -26,9 +27,9 @@ namespace ProjectHandler.Controllers.Api
             var question = new Question();
             int questionId = 0;
             
-            IList<Reponse> reponses = _context
+            IList<ReponsesByFormulaire> reponses = _context
                 .Database
-                .SqlQuery<Reponse>("GetReponsesByFormulaire @formId", new SqlParameter("@formId", id))
+                .SqlQuery<ReponsesByFormulaire>("GetReponsesByFormulaire @formId", new SqlParameter("@formId", id))
                 .ToList();
             for (int i = 0; i < reponses.Count; i++)
             {
@@ -37,7 +38,7 @@ namespace ProjectHandler.Controllers.Api
                  
                 reponses.ElementAt(i).Question = question;
             }
-            return Ok(reponses.Select(Mapper.Map<Reponse, ReponseDTO>));
+            return Ok(reponses.Select(Mapper.Map<ReponsesByFormulaire, ReponsesByFormulaireDTO>));
         }
     }
 }

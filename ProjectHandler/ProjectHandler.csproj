@@ -341,10 +341,27 @@
     <Compile Include="Migrations\201912280116471_CreateProcedureGetReferenceByCode.Designer.cs">
       <DependentUpon>201912280116471_CreateProcedureGetReferenceByCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912312050368_AddReferenceToReponse.cs" />
+    <Compile Include="Migrations\201912312050368_AddReferenceToReponse.Designer.cs">
+      <DependentUpon>201912312050368_AddReferenceToReponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912312053077_AlterProcGetReponsesByFormulaireAddReference.cs" />
+    <Compile Include="Migrations\201912312053077_AlterProcGetReponsesByFormulaireAddReference.Designer.cs">
+      <DependentUpon>201912312053077_AlterProcGetReponsesByFormulaireAddReference.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912312108178_AlterProcGetReponsesByFormulaireAddReferenceRemoveLeftJoin.cs" />
+    <Compile Include="Migrations\201912312108178_AlterProcGetReponsesByFormulaireAddReferenceRemoveLeftJoin.Designer.cs">
+      <DependentUpon>201912312108178_AlterProcGetReponsesByFormulaireAddReferenceRemoveLeftJoin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912312124505_RemoveRefFromReponse.cs" />
+    <Compile Include="Migrations\201912312124505_RemoveRefFromReponse.Designer.cs">
+      <DependentUpon>201912312124505_RemoveRefFromReponse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Complex\DynamicReferenceByQuestion.cs" />
     <Compile Include="Models\Complex\QuestionsByFormulaire.cs" />
+    <Compile Include="Models\Complex\ReponsesByFormulaire.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="Models\Domaine.cs" />
     <Compile Include="Models\DTOs\ComponentDTO.cs" />
@@ -356,6 +373,7 @@
     <Compile Include="Models\DTOs\QuestionDTO.cs" />
     <Compile Include="Models\DTOs\QuestionsByFormulaireDTO.cs" />
     <Compile Include="Models\DTOs\ReponseDTO.cs" />
+    <Compile Include="Models\DTOs\ReponsesByFormulaireDTO.cs" />
     <Compile Include="Models\DTOs\TypeDonneeDTO.cs" />
     <Compile Include="Models\DTOs\TypeFormDTO.cs" />
     <Compile Include="Models\DynamicReference.cs" />
@@ -830,6 +848,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912280116471_CreateProcedureGetReferenceByCode.resx">
       <DependentUpon>201912280116471_CreateProcedureGetReferenceByCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912312050368_AddReferenceToReponse.resx">
+      <DependentUpon>201912312050368_AddReferenceToReponse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912312053077_AlterProcGetReponsesByFormulaireAddReference.resx">
+      <DependentUpon>201912312053077_AlterProcGetReponsesByFormulaireAddReference.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912312108178_AlterProcGetReponsesByFormulaireAddReferenceRemoveLeftJoin.resx">
+      <DependentUpon>201912312108178_AlterProcGetReponsesByFormulaireAddReferenceRemoveLeftJoin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912312124505_RemoveRefFromReponse.resx">
+      <DependentUpon>201912312124505_RemoveRefFromReponse.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

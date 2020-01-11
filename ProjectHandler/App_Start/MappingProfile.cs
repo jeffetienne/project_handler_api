@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ProjectHandler.Models;
+using ProjectHandler.Models.Complex;
 using ProjectHandler.Models.DTOs;
 using System;
 using System.Collections.Generic;
@@ -87,7 +88,7 @@ namespace ProjectHandler.App_Start
             //Mapping Dynamic Reference
             var configDyn = new MapperConfiguration(cfgDyn =>
             {
-                cfgDyn.CreateMap<Question, QuestionDTO>();
+                cfgDyn.CreateMap<DynamicReference, DynamicReferenceDTO>();
             });
             IMapper mapperDyn = configDyn.CreateMapper();
             var dynamicReference = new DynamicReference();
@@ -101,6 +102,15 @@ namespace ProjectHandler.App_Start
             IMapper mapperRep = configRep.CreateMapper();
             var reponse = new Reponse();
             var reponseDto = mapperRep.Map<Reponse, ReponseDTO>(reponse);
+
+            //Reponse by Formulaire
+            var configRepForm = new MapperConfiguration(cfgRepFor =>
+            {
+                cfgRepFor.CreateMap<ReponsesByFormulaire, ReponsesByFormulaireDTO>();
+            });
+            IMapper mapperRepForm = configRepForm.CreateMapper();
+            var reponseByForm = new ReponsesByFormulaire();
+            var reponseByFormDto = mapperRepForm.Map<ReponsesByFormulaire, ReponsesByFormulaireDTO>(reponseByForm);
         }
     }
 }

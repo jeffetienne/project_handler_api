@@ -198,6 +198,7 @@
     <Compile Include="Controllers\Api\DynamicReferenceController.cs" />
     <Compile Include="Controllers\Api\FormTypeController.cs" />
     <Compile Include="Controllers\Api\FormulaireController.cs" />
+    <Compile Include="Controllers\Api\MaxGroupeController.cs" />
     <Compile Include="Controllers\Api\ProjetController.cs" />
     <Compile Include="Controllers\Api\QuestionController.cs" />
     <Compile Include="Controllers\Api\QuestionsByFormulaireController.cs" />
@@ -356,6 +357,30 @@
     <Compile Include="Migrations\201912312124505_RemoveRefFromReponse.cs" />
     <Compile Include="Migrations\201912312124505_RemoveRefFromReponse.Designer.cs">
       <DependentUpon>201912312124505_RemoveRefFromReponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001160116364_AddGroupeToReponse.cs" />
+    <Compile Include="Migrations\202001160116364_AddGroupeToReponse.Designer.cs">
+      <DependentUpon>202001160116364_AddGroupeToReponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001160128200_AlterProcGetReponsesByFormulaireAddGroupe.cs" />
+    <Compile Include="Migrations\202001160128200_AlterProcGetReponsesByFormulaireAddGroupe.Designer.cs">
+      <DependentUpon>202001160128200_AlterProcGetReponsesByFormulaireAddGroupe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001160137297_CreateProcGetMaxGroupe.cs" />
+    <Compile Include="Migrations\202001160137297_CreateProcGetMaxGroupe.Designer.cs">
+      <DependentUpon>202001160137297_CreateProcGetMaxGroupe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001160150379_AlterProcGetMaxGroupe.cs" />
+    <Compile Include="Migrations\202001160150379_AlterProcGetMaxGroupe.Designer.cs">
+      <DependentUpon>202001160150379_AlterProcGetMaxGroupe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001162212109_AlterProcGetReponsesByFormulaireAddOrderByCreeLe.cs" />
+    <Compile Include="Migrations\202001162212109_AlterProcGetReponsesByFormulaireAddOrderByCreeLe.Designer.cs">
+      <DependentUpon>202001162212109_AlterProcGetReponsesByFormulaireAddOrderByCreeLe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001171358273_AlterProcGetQuestionsByFormulaireAddOrderByCreeLe.cs" />
+    <Compile Include="Migrations\202001171358273_AlterProcGetQuestionsByFormulaireAddOrderByCreeLe.Designer.cs">
+      <DependentUpon>202001171358273_AlterProcGetQuestionsByFormulaireAddOrderByCreeLe.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -860,6 +885,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912312124505_RemoveRefFromReponse.resx">
       <DependentUpon>201912312124505_RemoveRefFromReponse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001160116364_AddGroupeToReponse.resx">
+      <DependentUpon>202001160116364_AddGroupeToReponse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001160128200_AlterProcGetReponsesByFormulaireAddGroupe.resx">
+      <DependentUpon>202001160128200_AlterProcGetReponsesByFormulaireAddGroupe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001160137297_CreateProcGetMaxGroupe.resx">
+      <DependentUpon>202001160137297_CreateProcGetMaxGroupe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001160150379_AlterProcGetMaxGroupe.resx">
+      <DependentUpon>202001160150379_AlterProcGetMaxGroupe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001162212109_AlterProcGetReponsesByFormulaireAddOrderByCreeLe.resx">
+      <DependentUpon>202001162212109_AlterProcGetReponsesByFormulaireAddOrderByCreeLe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001171358273_AlterProcGetQuestionsByFormulaireAddOrderByCreeLe.resx">
+      <DependentUpon>202001171358273_AlterProcGetQuestionsByFormulaireAddOrderByCreeLe.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

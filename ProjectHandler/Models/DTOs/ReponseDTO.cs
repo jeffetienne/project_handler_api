@@ -8,6 +8,7 @@ namespace ProjectHandler.Models.DTOs
     public class ReponseDTO
     {
         public int Id { get; set; }
+        public int Groupe { get; set; }
         public string Valeur { get; set; }
         public int QuestionId { get; set; }
         public Question Question { get; set; }

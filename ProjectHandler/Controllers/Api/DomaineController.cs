@@ -22,7 +22,12 @@ namespace ProjectHandler.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetDomaines()
         {
-            return Ok(_context.Domaines
+            var domaines = _context.Domaines;
+            //var result = (domaines == null ? NotFound() : Ok(domaines.ToList()
+            //          .Select(Mapper.Map<Domaine, DomaineDTO>)));
+            if (domaines == null)
+                return NotFound();
+            return Ok(domaines
                       .ToList()
                       .Select(Mapper.Map<Domaine, DomaineDTO>));
         }
@@ -33,7 +38,7 @@ namespace ProjectHandler.Controllers.Api
             var domaine = _context.Domaines.SingleOrDefault(d => d.Id == id);
             if (domaine == null)
                 return NotFound();
-            return Ok(Mapper.Map<Domaine, DomaineDTO>(domaine));
+            return Ok(Mapper.Map<DomaineDTO>(domaine));
         }
     }
 }

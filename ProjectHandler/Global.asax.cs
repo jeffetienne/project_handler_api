@@ -15,7 +15,9 @@ namespace ProjectHandler
     {
         protected void Application_Start()
         {
-            Mapper.Initialize(c => c.AddProfile<MappingProfile>());
+            //Mapper.Initialize(c => c.AddProfile<MappingProfile>());
+            //Mapper.Configuration.AssertConfigurationIsValid();
+            AutoMapperConfiguration.Configure();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -28,6 +30,19 @@ namespace ProjectHandler
             {
                 HttpContext.Current.Response.Flush();
             }
+        }
+    }
+
+    public class AutoMapperConfiguration
+    {
+        public static void Configure()
+        {
+            Mapper.Initialize(x =>
+            {
+                x.AddProfile<MappingProfile>();
+            });
+
+            Mapper.Configuration.AssertConfigurationIsValid();
         }
     }
 }
